@@ -14,9 +14,17 @@ export const setAccessToken = (token: string | null) => {
 };
 export const getAccessToken = () => accessToken;
 
-const plain = axios.create({ baseURL: API_BASE, withCredentials: true });
+const plain = axios.create({
+  baseURL: API_BASE,
+  withCredentials: true,
+  headers: { "bypass-tunnel-reminder": "true" },
+});
 
-export const api = axios.create({ baseURL: API_BASE, withCredentials: true });
+export const api = axios.create({
+  baseURL: API_BASE,
+  withCredentials: true,
+  headers: { "bypass-tunnel-reminder": "true" },
+});
 
 api.interceptors.request.use((config) => {
   if (accessToken) config.headers.Authorization = `Bearer ${accessToken}`;

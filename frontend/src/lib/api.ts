@@ -3,10 +3,16 @@ import type {
   AiStatus, DailyReport, DocumentItem, Invoice, Issue, Material, Paged, Project, Task, User,
 } from "./types";
 
-export const API_BASE =
+const rawBase =
   (import.meta.env.VITE_API_BASE_URL as string | undefined) ??
   (import.meta.env.VITE_API_URL as string | undefined) ??
   "/api/v1";
+
+export const API_BASE = (
+  rawBase.startsWith("http") && !rawBase.includes("/api/v1")
+    ? rawBase.replace(/\/+$/, "") + "/api/v1"
+    : rawBase.replace(/\/+$/, "")
+);
 
 let accessToken: string | null = null;
 export const setAccessToken = (token: string | null) => {

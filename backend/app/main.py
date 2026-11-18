@@ -52,6 +52,7 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.cors_list,
+    allow_origin_regex=r"^https://.*\.vercel\.app$",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -96,6 +97,11 @@ async def unhandled_handler(request: Request, exc: Exception):
 @app.get("/", include_in_schema=False)
 def root():
     return {"name": settings.app_name, "version": __version__, "docs": "/docs" if settings.enable_docs else None}
+
+
+@app.get("/health", include_in_schema=False)
+def root_health():
+    return {"status": "ok", "app": settings.app_name}
 
 
 for router in (auth.router, projects.router, reports.router, inventory.router, issues.router, tasks.router,

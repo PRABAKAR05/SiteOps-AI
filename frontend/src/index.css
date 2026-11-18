@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-paper text-ink antialiased;
+    font-feature-settings: "ss01" 1, "cv11" 1;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: #b4dbd1;
+    color: #04211f;
+  }
+
+  :focus-visible {
+    outline: 2px solid #0f766e;
+    outline-offset: 2px;
+  }
+
+  button,
+  a,
+  input,
+  select,
+  textarea {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  h1,
+  h2,
+  h3 {
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-xl border border-line bg-surface shadow-card;
+  }
+
+  .label {
+    @apply mb-1.5 block text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-muted;
+  }
+
+  .field {
+    @apply w-full rounded-lg border border-line bg-white px-3 py-2.5 text-sm text-ink placeholder:text-ink-faint transition
+      focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/15 disabled:cursor-not-allowed disabled:bg-paper;
+    min-height: 42px;
+  }
+
+  .table-wrap {
+    @apply overflow-x-auto;
+  }
+
+  .th {
+    @apply whitespace-nowrap px-4 py-2.5 text-left text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-faint;
+  }
+
+  .td {
+    @apply border-t border-line px-4 py-3 text-sm align-middle;
+  }
+
+  .mono-num {
+    @apply font-mono tabular-nums;
+  }
+
+  .prose-note {
+    @apply text-sm leading-relaxed text-ink-muted;
+  }
+}
+
+@layer utilities {
+  .safe-bottom {
+    padding-bottom: max(env(safe-area-inset-bottom), 0.5rem);
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .skeleton {
+    background: linear-gradient(90deg, #eceae2 0px, #f5f3ec 40px, #eceae2 80px);
+    background-size: 600px 100%;
+    @apply animate-shimmer rounded-md;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (hover: none) {
+  .hover-lift:hover {
+    transform: none;
+  }
+}

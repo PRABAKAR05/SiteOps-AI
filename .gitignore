@@ -1,0 +1,48 @@
+# Secrets / environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+coverage.xml
+
+# Node
+node_modules/
+dist/
+dist-ssr/
+.vite/
+*.local
+npm-debug.log*
+pnpm-debug.log*
+yarn-error.log*
+
+# Runtime data (uploads, vector store, logs, pdf output)
+backend/var/
+backend/uploads/
+backend/chroma/
+backend/logs/
+*.log
+*.pdf.tmp
+
+# Editor / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Test artifacts
+backend/tests/_tmp/
+test-results/
+playwright-report/
